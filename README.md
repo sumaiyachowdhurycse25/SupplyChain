@@ -124,7 +124,7 @@ Cost effective, might increase with LLM usage
 <p>Load supply_chain_backup_utf8 file to create the database</p>
 <p>Connect backend with the database</p>
 <p>Create Python Virtual Environment</p>
-<p>Open Visual Studio Code</p>
+
 <p>Open code forecasting_service.py file (backend)</p>
   <p>Install required python libraries from requirements.txt</p>
   <p>Test it with backend</p>
