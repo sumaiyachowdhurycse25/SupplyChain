@@ -9,13 +9,17 @@
   <div align="center">
   <h2>Use Case</h2>
   <p>Company wants to manage its suppliers, inventory, warehouses, orders, logistics and customer deliveries in one platform. They want AI assistance for forecasting demand, detecting shipment delays, and suggesting optimization strategies</p>
-<p>Feasibility: Moderate Technical Feasibility
+<p>Feasibility: Moderate Technical Feasibility.
 Cost effective, might increase with LLM usage 
 </p>
   </div>
 <div align="center">
   <h2>Features</h2>
- <h3>Dashboard</h3>
+ <h3>Admin Login</h3>
+  <p>Admin authentication with email and password. Redirect into dashboard page.</p>
+<img src="https://github.com/sumaiyachowdhurycse25/Multiple-Disease-Prediction/blob/master/Dashboard.PNG">  
+  <br>
+  <h3>Dashboard</h3>
   <p>Displays links to different disease prediction models.</p>
 <img src="https://github.com/sumaiyachowdhurycse25/Multiple-Disease-Prediction/blob/master/Dashboard.PNG">  
   <br>
