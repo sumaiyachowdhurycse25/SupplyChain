@@ -1,20 +1,17 @@
 <div align="center">
 
-  <h1>Disease Prediction Website</h1>
+  <h1>AI Powered Supply Chain Website</h1>
   
   
   
   </div>
 
   <div align="center">
-  <h2>Project Description</h2>
-  <p>The goal of this website is to diagnose different diseases and identifying the risk factors and causes. Machine Learning algorithms such as Decision Tree, Support Vector Machine, Logistic Regression, ZeroR classifier, Random Forest, Perceptron and K-Nearest Neighbors have been used to detect diseases such as Heart Disease, Parkinson’s Disease, Diabetes, Breast Cancer, Thyroid, Chronic Kidney Disease and predict the risk of Stroke. VGG-16 architecture of Convolutional Neural Network have been implemented to classify 4 types of Brain Tumor such as Glioma, Meningioma, Pituitary and No Tumor.  The highest accuracy obtained for Heart Disease, Parkinson’s Disease, Diabetes, Breast Cancer, Thyroid, Chronic Kidney Disease, Stroke and Brain Tumor are 100 percent, 96 percent, 78 percent, 100 percent, 85 percent, 98 percent, 95 percent and 93 percent respectively. The models of Brain Tumor, Heart Disease, Parkinson’s Disease and Diabetes are deployed through a web framework. Natural Language Processing (NLP) has been used to create medical chatbot and predict diagnosis with clinical notes. 
-   Model training focused on diagnosing different diseases and identifying the 
-risk factors and causes. The aim is to build models with higher accuracy 
-which considers all the symptoms of the diseases that are important. In this project, 
-the diseases are Stroke, Heart disease, Parkinson, Diabetes, Breast Cancer, 
-Thyroid, Chronic Kidney disease and Brain Tumor. 7 machine learning algorithms (Decision tree, K-Nearest Neighbor, Logistic Regression, 
-Support Vector Machine, Perceptron, ZeroR Classifier and Naïve Bayes) have been implemented to build models with higher accuracy</p>
+  <h2>Use Case</h2>
+  <p>Company wants to manage its suppliers, inventory, warehouses, orders, logistics and customer deliveries in one platform. They want AI assistance for forecasting demand, detecting shipment delays, and suggesting optimization strategies
+Feasibility: Moderate Technical Feasibility
+Cost effective, might increase with LLM usage 
+</p>
   </div>
 <div align="center">
   <h2>Features</h2>
