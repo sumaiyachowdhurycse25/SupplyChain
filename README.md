@@ -101,16 +101,15 @@ Cost effective, might increase with LLM usage
 <div align="center">
   <h2>Skills Required</h2>
  
-  <p>Scikit-learn</p>
-  <p>Numpy</p>
-  <p>Pandas</p>
-  <p>Matplotlib</p>
-  <p>Seaborn</p>
-  <p>OpenCv</p>
-  <p>TensorFlow</p>
-  <p>Keras</p>
-  <p>Pickle</p>
-  <p>Streamlit</p>
+  <p>React</p>
+  <p>Node JS</p>
+  <p>PostgreSql</p>
+  <p>Flask</p>
+  <p>Python</p>
+  <p>Open AI</p>
+  <p>LLM</p>
+  <p>LSTM</p>
+  
 </div>
 <div align="center">
   <h2>How to run the codes</h2>
