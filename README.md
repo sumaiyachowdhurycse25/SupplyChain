@@ -8,8 +8,8 @@
 
   <div align="center">
   <h2>Use Case</h2>
-  <p>Company wants to manage its suppliers, inventory, warehouses, orders, logistics and customer deliveries in one platform. They want AI assistance for forecasting demand, detecting shipment delays, and suggesting optimization strategies
-Feasibility: Moderate Technical Feasibility
+  <p>Company wants to manage its suppliers, inventory, warehouses, orders, logistics and customer deliveries in one platform. They want AI assistance for forecasting demand, detecting shipment delays, and suggesting optimization strategies</p>
+<p>Feasibility: Moderate Technical Feasibility
 Cost effective, might increase with LLM usage 
 </p>
   </div>
