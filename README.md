@@ -114,41 +114,37 @@ Cost effective, might increase with LLM usage
 <div align="center">
   <h2>How to run the codes</h2>
   
-  <p>Install Jupyter Notebook</p>
-  <p>Install Anaconda Prompt</p>
-  <p>Configure Environment in Anaconda Prompt</p>
-  <p>Open Anaconda Prompt</p>
-  <p>Go to file path</p>
-  <p>Open Jupyter Notebook</p>
-  <p>Open code ipynb files (ModelTraining)</p>
-  <p>Install Required Python Libraries</p>
-  <p>Load Dataset (ModelTraining)</p>
-  <p>Run the codes</p>
-<p>Find out the models with higher accuracy</p>
 <p>Install Visual Studio Code</p>
-
+<p>Install npm, node js and react</p>
+<p>Open Visual Studio Code</p>
+<p>Open backend and frontend folders</p>
+<p>Install dependencies</p>
+<p>Install pgAdmin4</p>
+<p>Open pgAdmin4</p>
+<p>Load supply_chain_backup_utf8 file to create the database</p>
+<p>Connect backend with the database</p>
 <p>Create Python Virtual Environment</p>
 <p>Open Visual Studio Code</p>
-<p>Open code py files (ModelCreation)</p>
-  <p>Install Required Python Libraries</p>
-  <p>Load Dataset (ModelTraining)</p>
-  
-<p>Save models and scaler files</p>
-<p>Close Visual Studio Code</p>
-<p>Open ModelDeploying folder in Visual Studio Code</p>
-<p>Open py files</p>
-<p>Install Required Python Libraries</p>
-<p>Load Models, Scaler and CSV files</p>
+<p>Open code forecasting_service.py file (backend)</p>
+  <p>Install required python libraries from requirements.txt</p>
+  <p>Test it with backend</p>
 <p>Open terminal</p>
-<p>Run "streamlit run app.py"</p>
+<p>Start ml server (forecasting_service.py) </p>
+<p>Start backend (node js) </p>
+<p>Start frontend (react) </p>
 <p>Website can be viewed in localhost</p>
-<p>To deploy it in cloud, create an account in HuggingFace </p>
-<p>Create a new Space</p>
-<p>Select Docker to host space</p>
-<p>Choose Streamlit from Docker template</p>
-<p>Create the space</p>
-<p>Add .requirements.txt in ModelTraining folder</p>
-<p>Upload the folder in the space</p>
-<p>Edit the Dockerfile</p>
-<p>Start the space</p>
-<p>Website will be live on HuggingFace</p>
+<p>Install Docker Desktop</p>
+<p>Create Dockerfile for frontend, backend and ml</p>
+<p>There will be 3 Dockerfile</p>
+<p>Create docker-compose.yml</p>
+<p>Dockerize the containers</p>
+<p>To deploy it in cloud, create an account AWS (free tier) </p>
+<p>Create an ec2 instance for postgresql container and configure it</p>
+<p>It will be database server</p>
+<p>Create another ec2 instance for frontend and backend container and configure it</p>
+<p>Ip address of backend server will be used in frontend files for API</p>
+<p>Download the keys</p>
+<p>Use the keys to connect with the instances from terminal</p>
+<p>Configure the files and push the containers</p>
+<p>Start the ec2 instances</p>
+<p>Website will be live on AWS</p>
