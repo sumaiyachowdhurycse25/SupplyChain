@@ -25,7 +25,7 @@ Cost effective, might increase with LLM usage
   <img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/dashboard2.PNG">
   <br>
  
-    <h3>Chatbot</h3>
+<h3>Chatbot</h3>
   <p>Answer queries like: </p>
 <p>•“Which products are likely to stock out next week?”</p>
 <p>•“Which suppliers are causing delays?”</p>
