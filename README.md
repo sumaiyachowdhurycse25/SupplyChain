@@ -17,18 +17,21 @@ Cost effective, might increase with LLM usage
   <h2>Features</h2>
  <h3>Admin Login</h3>
   <p>Admin authentication with email and password. Redirect into dashboard page.</p>
-<img src="https://github.com/sumaiyachowdhurycse25/Multiple-Disease-Prediction/blob/master/Dashboard.PNG">  
+<img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/login.PNG">  
   <br>
   <h3>Dashboard</h3>
-  <p>Displays links to different disease prediction models.</p>
-<img src="https://github.com/sumaiyachowdhurycse25/Multiple-Disease-Prediction/blob/master/Dashboard.PNG">  
+  <p>Displays total products , current stock , pending shipments, stockout alerts, pending orders, latest forecast results and low stock table.</p>
+<img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/dashboard1.PNG">
+  <img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/dashboard2.PNG">
   <br>
-  <h3>For Brain Tumor Detection</h3>
-<p> Model Building focused on considering type, location of the tumor and grade of the tumor for brain tumor detection. A convolutional neural network model have been implemented on Magnetic Resonance Imaging. The four classifications are Meningioma, Glioma, No Tumor and Pituitary.</p>
-    <img src="https://github.com/sumaiyachowdhurycse25/BrainTumorDetection/blob/master/Model%20Building.PNG">
-  <p>In the website , upload a brain MRI image to classify 4 types: Glioma, Meningioma, Pituitary or No tumor. The model was created by neural network.</p> 
-  <img src="https://github.com/sumaiyachowdhurycse25/Multiple-Disease-Prediction/blob/master/braintumor.PNG">
-  <br>
+ 
+    <h3>Chatbot</h3>
+  <p>Answer queries like: </p>
+<p>•“Which products are likely to stock out next week?”</p>
+<p>•“Which suppliers are causing delays?”</p>
+</p>
+  <img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/chatbot.PNG">
+ <br>
   <h3>For Diabetes</h3>
   <p>Different machine learning models have been built based on the parameters - Pregnancies, Glucose level, Blood Pressure, Skin Thickness, Insulin, BMI, Diabetes 
 Pedigree Function and Age. The performance of the models have been analyzed to get the 
