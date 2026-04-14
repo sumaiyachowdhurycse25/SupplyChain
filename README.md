@@ -32,83 +32,71 @@ Cost effective, might increase with LLM usage
 </p>
   <img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/chatbot.PNG">
  <br>
-  <h3>For Diabetes</h3>
-  <p>Different machine learning models have been built based on the parameters - Pregnancies, Glucose level, Blood Pressure, Skin Thickness, Insulin, BMI, Diabetes 
-Pedigree Function and Age. The performance of the models have been analyzed to get the 
-best model to detect whether the patient has diabetes or not. </p>
-  <img src="https://github.com/sumaiyachowdhurycse25/Multiple-Disease-Prediction/blob/master/Diabetes.PNG">
+  <h3>Suppliers</h3>
+  <p>Add, Edit and Delete supplier’s name, email and phone number. Display them. </p>
+  <img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/Suppliers.PNG">
  <br>
-    <h3>For Medical Chatbot</h3>
-  <p>Natural Language Processing (NLP) has been used to create a medical chatbot.</p>
-  <img src="https://github.com/sumaiyachowdhurycse25/Multiple-Disease-Prediction/blob/master/Chatbot.PNG">
+    <h3>Products</h3>
+  <p>Add, Edit and Delete product name with sku and reorder level. Display them.</p>
+  <img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/product.PNG">
  <br>
-   <h3>For Clinical Diagnosis Prediction</h3>
-  <p>Enter clinical notes to predict diagnosis. Natural Language Processing (NLP) has been used to create this model.</p>
-  <img src="https://github.com/sumaiyachowdhurycse25/Multiple-Disease-Prediction/blob/master/Clinical%20notes.PNG">
+   <h3>Warehouse</h3>
+  <p>Add, Edit and Delete warehouse name and location. Display them.</p>
+  <img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/warehouses.PNG">
  <br>
-  <h3>For Kidney Disease</h3>
+  <h3>Inventory</h3>
+  <p>Add product and warehouse from the scroll bar. Add product quantity.</p>
+  <img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/Inventory.PNG">
+ <br>
+  <h3>Inventory Display</h3>
   
-  <p>Different machine learning models have been built based on the 
-parameters - Age, Blood Pressure, Specific Gravity, Albumin, Sugar Red Blood Cells, Pus 
-Cell, Pus Cell Clumps, Bacteria, Blood Glucose Random, Blood Urea, Serum Creatinine, 
-Sodium, Potassium, Hemoglobin, Packed Cell Volume, White Blood Cell Count, Red 
-Blood Cell Count, Hypertension, Diabetes Mellitus, Coronary Artery Disease, Appetite, 
-Pedal Edema and Anemia. The performance of the models have been analyzed to get the 
-best model to detect whether the patient has kidney disease or not.   </p>
-<img src="https://github.com/sumaiyachowdhurycse25/Multiple-Disease-Prediction/blob/master/Kidney.PNG">
+  <p>Display total products in inventory and number of product items with low stock alerts. Display product, sku, warehouse, quantity and reorder level with edit and delete option.</p>
+<img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/Inventorydisplay.PNG">
 <br>
- <h3>For Stroke</h3>
+ <h3>Shipment Tracking</h3>
   
-  <p>Different machine learning models have been built based on the parameters - 
-Gender, Age, Hypertension, Heart Disease, Married, Residence Type, Average Glucose 
-Level, BMI and Smoking Status. The performance of the models have been analyzed to 
-get the best model to detect whether the patient will have stroke or not.   </p>
-<img src="https://github.com/sumaiyachowdhurycse25/Multiple-Disease-Prediction/blob/master/Stroke.PNG">
+  <p>Track product id, name, status (delivered, delayed, in transit) , date (expected delivery and actual delivery) with delete option and recent shipment section.</p>
+<img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/Shipment%20Tracking.PNG">
 <br>
- <h3>For Breast Cancer</h3>
+ <h3>Add Shipment</h3>
   
-  <p>Different machine learning models have been built based on the 
-parameters - Radius, Texture, Perimeter, Area, Smoothness, Compactness, Concavity, 
-Concave Points, Symmetry and Fractal Dimension. The performance of the models have 
-been analyzed to get the best model to detect whether it is malignant or benign.   </p>
-<img src="https://github.com/sumaiyachowdhurycse25/Multiple-Disease-Prediction/blob/master/Breast%20Cancer.PNG">
+  <p>Select product and status from the scroll bar, select actual and expected delivery date to create shipment.</p>
+<img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/add%20shipment.PNG">
 <br>
-<h3>For Parkinson</h3>
+<h3>Purchase Orders</h3>
   
-  <p> Different machine learning models have been built based on the parameters - Average Vocal Fundamental Frequency, Maximum Vocal Fundamental Frequency, 
-Minimum Vocal Fundamental Frequency, Several Measures of Variation in Fundamental 
-Frequency, Several Measures of Variation in Amplitude, Two Measures of Ratio of Noise 
-to Tonal Components in the Voice, Two Nonlinear Dynamical Complexity Measures, 
-Signal Fractal Scaling Exponent and Three Nonlinear Measures of Fundamental Frequency 
-Variation. The performance of the models have been analyzed to get the best model to 
-detect whether the patient has parkinson or not.   </p>
-<img src="https://github.com/sumaiyachowdhurycse25/Multiple-Disease-Prediction/blob/master/Parkinson.PNG">
+  <p> Select suppliers and status (pending, approved, received) from scroll bar and add date & total amount to create purchase order. Display them with edit and delete option.</p>
+<img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/purchaseorders.PNG">
 <br>
-<h3>For Thyroid</h3>
+<h3>Purchase Order Items</h3>
   
-  <p> Different machine learning models have been built based on the parameters - Age, Sex, On Thyroxine, Query on Thyroxine, On Antithyroid Meds, Sick, Pregnant, 
-Thyroid Surgery, I131 Treatment, Query Hypothyroid, Query Hyperthyroid, Lithium, 
-Goitre, Tumor, Hypopituitary, Psych, TSH Measured, TSH Level, T3 Measured, T3 Level, 
-TT4 Measured, TT4 Level, T4U Measured, T4U Level, FTI Measured, FTI Level, TBG 
-Measured and TBG Level. The performance of the models have been analyzed to get the 
-best model to detect whether the patient has thyroid or not. </p>
-<img src="https://github.com/sumaiyachowdhurycse25/Multiple-Disease-Prediction/blob/master/Thyroid.PNG">
+  <p> Click on the selected id of purchase order which will redirect to this page. Select product from scroll bar, add quantity and unit price. Display them with line total and edit & delete option.</p>
+<img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/purchaseorderitem.PNG">
 <br>
-<h3>For Heart Disease</h3>
+<h3>Reorder AI</h3>
   
-  <p> Different machine learning models have been built based on the 
-parameters - Age, Origin, Sex, Chest pain type, Resting Blood Pressure, Serum 
-Cholesterol, Fasting Blood Sugar, Resting Electrocardiographic Results, Maximum Heart 
-Rate Achieved, Exercise-Induced Angina, ST Depression Induced by Exercise Relative to 
-Rest, The Slope of the Peak Exercise ST Segment and Number of Major Vessels .The 
-performance of the models have been analyzed to get the best model to detect whether the 
-patient has heart disease or not.</p>
-<img src="https://github.com/sumaiyachowdhurycse25/Multiple-Disease-Prediction/blob/master/Heart.PNG">
+  <p>Suggest reorder quantity for a product.</p>
+<img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/reorder.PNG">
 <br>
-<div align="center">
-  <h2>Model Building for Machine Learning</h2>
-  <img src="https://github.com/sumaiyachowdhurycse25/Multiple-Disease-Prediction/blob/master/Model%20Building.PNG">
-</div>
+<h3>Shipment Delay Prediction</h3>
+  
+  <p>Detect delays using AI predictions based on historical data.</p>
+<img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/delay1.PNG">
+<img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/delay2.PNG">
+<br>
+<h3>Route Optimization</h3>
+  
+  <p>Detect optimal warehouse allocation or delivery routes using AI.</p>
+<img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/route.PNG">
+<br>
+
+<h3>Demand Forecast</h3>
+  
+  <p>Select product and click predict for forecast with AI explanation.</p>
+<img src="https://github.com/sumaiyachowdhurycse25/Trying/blob/master/forecast.PNG">
+<br>
+
+
 </div>
 <div align="center">
   <h2>Skills Required</h2>
