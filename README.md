@@ -123,27 +123,16 @@ Cost effective, might increase with LLM usage
 <p>Open pgAdmin4</p>
 <p>Load supply_chain_backup_utf8 file to create the database</p>
 <p>Connect backend with the database</p>
-<p>Create Python Virtual Environment</p>
-
-<p>Open code forecasting_service.py file (backend)</p>
-  <p>Install required python libraries from requirements.txt</p>
-  <p>Test it with backend</p>
-<p>Open terminal</p>
-<p>Start ml server (forecasting_service.py) </p>
 <p>Start backend (node js) </p>
 <p>Start frontend (react) </p>
 <p>Website can be viewed in localhost</p>
-<p>Install Docker Desktop</p>
-<p>Create Dockerfile for frontend, backend and ml</p>
-<p>There will be 3 Dockerfile</p>
-<p>Create docker-compose.yml</p>
-<p>Dockerize the containers</p>
-<p>To deploy it in cloud, create an account AWS (free tier) </p>
-<p>Create an ec2 instance for postgresql container and configure it</p>
-<p>It will be database server</p>
-<p>Create another ec2 instance for frontend and backend container and configure it</p>
+<p>To deploy it in cloud, create a vercel account </p>
+<p>Create a neon account</p>
+<p>Create the database in neon</p>
+<p>Create a project in vercel for backend and configure it</p>
+<p>Push backend folder using CLI</p>
+<p>Create a project in vercel for frontend</p>
 <p>Ip address of backend server will be used in frontend files for API</p>
-<p>Download the keys</p>
 <p>Use the keys to connect with the instances from terminal</p>
 <p>Configure the files and push the containers</p>
 <p>Start the ec2 instances</p>
