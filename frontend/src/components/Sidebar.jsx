@@ -47,7 +47,7 @@ export default function Sidebar() {
         justifyContent: "space-between",
 
         // Glass effect
-        background: "rgba(255,255,255,0.05)",
+        background: "linear-gradient(135deg, #0f172a, #1e293b, #0f172a)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
         borderRight: "1px solid rgba(255,255,255,0.08)",
@@ -90,21 +90,32 @@ export default function Sidebar() {
         <nav>
           {[
             { name: "Dashboard", path: "/" },
-            { name: "AI Assistant", path: "/ai" },
+
+            //{ name: "AI Assistant", path: "/ai" },
+            //{name: "Chatbot", path: "/nlp"},
+
+            {name: "Chat", path: "/chat"},
+
             { name: "Suppliers", path: "/suppliers" },
+            
             { name: "Products", path: "/products" },
+
             { name: "Warehouses", path: "/warehouses" },
+
             { name: "Inventory", path: "/inventory" },
+
             { name: "Inventory Display", path: "/inventorydisplay" },
+            
             { name: "Shipment Tracking", path: "/ShipmentTracking" },
+            
             { name: "Add Shipment", path: "/shipments/new" },
+
             { name: "Purchase Orders", path: "/purchase-orders" },
-           /* { name: "Purchase Order Items", path: "/purchase-orders/:id" }, */
-                    
+
             { name: "Reorder AI", path: "/reorder" },
             { name: "Delay Prediction", path: "/delay-prediction" },
             { name: "Route Optimization", path: "/route-optimization" },
-            { name: "Demand Forecast", path: "/forecast" },
+
           ].map((item) => (
             <NavLink
               key={item.name}
