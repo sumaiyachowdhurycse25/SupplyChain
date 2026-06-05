@@ -104,11 +104,8 @@ Cost effective, might increase with LLM usage
   <p>React</p>
   <p>Node JS</p>
   <p>PostgreSql</p>
-  <p>Flask</p>
-  <p>Python</p>
-  <p>Open AI</p>
-  <p>LLM</p>
-  <p>LSTM</p>
+  <p>NLP</p>
+  
   
 </div>
 <div align="center">
@@ -129,11 +126,12 @@ Cost effective, might increase with LLM usage
 <p>To deploy it in cloud, create a vercel account </p>
 <p>Create a neon account</p>
 <p>Create the database in neon</p>
-<p>Create a project in vercel for backend and configure it</p>
+<p>Create a project in vercel for backend and configure env variables</p>
+<p>Connect backend with neon database</p>
 <p>Push backend folder using CLI</p>
 <p>Create a project in vercel for frontend</p>
 <p>Ip address of backend server will be used in frontend files for API</p>
-<p>Use the keys to connect with the instances from terminal</p>
-<p>Configure the files and push the containers</p>
+<p>Push frontend folder using CLI</p>
+<p>Website can be viewed live</p>
 <p>Start the ec2 instances</p>
 <p>Website will be live on AWS</p>
