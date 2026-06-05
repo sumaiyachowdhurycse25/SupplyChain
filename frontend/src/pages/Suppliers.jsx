@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-
+const API = "https://supplychain-khaki.vercel.app/api";
 // Helper
 const fetchWithToken = (url, options = {}) => {
   const token = localStorage.getItem("adminToken");
-  const headers = { 
-    ...options.headers, 
-    Authorization: `Bearer ${token}` 
-  };
-  return fetch(url, { ...options, headers });
+
+  return fetch(API + url, {
+    ...options,
+    headers: {
+      ...options.headers,
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export default function Suppliers() {
@@ -17,7 +20,7 @@ export default function Suppliers() {
 
   const loadSuppliers = async () => {
     try {
-      const res = await fetchWithToken("http://100.54.124.184:5000/api/suppliers");
+      const res = await fetchWithToken("/suppliers");
 
       const data = await res.json();
       setSuppliers(Array.isArray(data) ? data : []);
@@ -35,8 +38,8 @@ export default function Suppliers() {
 
     const method = editId ? "PUT" : "POST";
     const url = editId
-      ? `http://100.54.124.184:5000/api/suppliers/${editId}`
-      : "http://100.54.124.184:5000/api/suppliers";
+      ? `/suppliers/${editId}`
+      : "/suppliers";
 
    await fetchWithToken(url, {
       method,
@@ -52,7 +55,7 @@ export default function Suppliers() {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete supplier?")) return;
 
-    await fetchWithToken(`http://100.54.124.184:5000/api/suppliers/${id}`, {
+    await fetchWithToken(`/suppliers/${id}`, {
       method: "DELETE"
     });
 

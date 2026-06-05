@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-
+const API = "http://localhost:5000/api";
 // Helper to include token
 const fetchWithToken = (url, options = {}) => {
   const token = localStorage.getItem("adminToken");
-  const headers = {
-    ...options.headers,
-    Authorization: `Bearer ${token}`,
-  };
-  return fetch(url, { ...options, headers });
+
+  return fetch(API + url, {
+    ...options,
+    headers: {
+      ...options.headers,
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export default function Products() {
@@ -17,7 +20,7 @@ export default function Products() {
 
   const loadProducts = async () => {
     try {
-      const res = await fetchWithToken("http://100.54.124.184:5000/api/products");
+      const res = await fetchWithToken("/products");
       const data = await res.json();
       setProducts(Array.isArray(data) ? data : []);
     } catch (err) {
@@ -35,8 +38,8 @@ export default function Products() {
 
     const method = editId ? "PUT" : "POST";
     const url = editId
-      ? `http://100.54.124.184:5000/api/products/${editId}`
-      : "http://100.54.124.184:5000/api/products";
+      ? `/products/${editId}`
+      : "/products";
 
     const payload = editId
       ? { name: form.name, reorder_level: form.reorder_level }
@@ -56,7 +59,7 @@ export default function Products() {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete product?")) return;
 
-    await fetchWithToken(`http://100.54.124.184:5000/api/products/${id}`, {
+    await fetchWithToken(`/products/${id}`, {
       method: "DELETE"
     });
 

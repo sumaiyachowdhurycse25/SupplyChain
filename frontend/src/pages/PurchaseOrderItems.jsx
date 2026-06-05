@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+const API = "http://localhost:5000/api";
+
 // Helper
 const fetchWithToken = (url, options = {}) => {
   const token = localStorage.getItem("adminToken");
-  const headers = { ...options.headers, Authorization: `Bearer ${token}` };
-  return fetch(url, { ...options, headers });
+
+  return fetch(API + url, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export default function PurchaseOrderItems() {
@@ -32,8 +41,8 @@ export default function PurchaseOrderItems() {
   const loadData = async () => {
     try {
       const [itemsRes, productsRes] = await Promise.all([
-        fetchWithToken(`http://100.54.124.184:5000/api/purchase-order-items/${id}`).then(r => r.json()),
-        fetchWithToken("http://100.54.124.184:5000/api/products").then(r => r.json())
+        fetchWithToken(`/purchase-order-items/${id}`).then(r => r.json()),
+        fetchWithToken("/products").then(r => r.json())
       ]);
 
       setItems(Array.isArray(itemsRes) ? itemsRes : []);
@@ -47,7 +56,7 @@ export default function PurchaseOrderItems() {
     e.preventDefault();
 
     try {
-      await fetchWithToken("http://100.54.124.184:5000/api/purchase-order-items", {
+      await fetchWithToken("/purchase-order-items", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -76,7 +85,7 @@ export default function PurchaseOrderItems() {
 
   const saveEdit = async (itemId) => {
     try {
-      await fetchWithToken(`http://100.54.124.184:5000/api/purchase-order-items/${itemId}`, {
+      await fetchWithToken(`/purchase-order-items/${itemId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -96,7 +105,7 @@ export default function PurchaseOrderItems() {
   const deleteItem = async (itemId) => {
     if (!window.confirm("Delete this item?")) return;
 
-    await fetchWithToken(`http://100.54.124.184:5000/api/purchase-order-items/${itemId}`, { method: "DELETE" });
+    await fetchWithToken(`/purchase-order-items/${itemId}`, { method: "DELETE" });
 
     loadData();
   };

@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
-
+const API = "http://localhost:5000/api";
 // Helper to include token in every request
 const fetchWithToken = (url, options = {}) => {
   const token = localStorage.getItem("adminToken");
-  const headers = { ...options.headers, Authorization: `Bearer ${token}` };
-  return fetch(url, { ...options, headers });
+
+  return fetch(API + url, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export default function ReorderDashboard() {
@@ -13,7 +20,7 @@ export default function ReorderDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetchWithToken("http://100.54.124.184:5000/api/reorder");
+        const res = await fetchWithToken("/reorder");
 
         const json = await res.json();
         setData(Array.isArray(json) ? json : []);

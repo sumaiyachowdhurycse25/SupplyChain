@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
+const API = "http://localhost:5000/api";
 
 // Helper to include token
 const fetchWithToken = (url, options = {}) => {
   const token = localStorage.getItem("adminToken");
-  const headers = {
-    ...options.headers,
-    Authorization: `Bearer ${token}`,
-  };
-  return fetch(url, { ...options, headers });
+
+  return fetch(API + url, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export default function AddShipment() {
@@ -27,7 +32,7 @@ export default function AddShipment() {
 
   const fetchProducts = async () => {
     try {
-      const res = await fetchWithToken("http://100.54.124.184:5000/api/products");
+      const res = await fetchWithToken("/products");
 
       const data = await res.json();
       setProducts(Array.isArray(data) ? data : []);
@@ -41,7 +46,7 @@ export default function AddShipment() {
     setLoading(true);
 
     try {
-      const res = await fetchWithToken("http://100.54.124.184:5000/api/shipments", {
+      const res = await fetchWithToken("/shipments", {
 
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -116,6 +121,8 @@ export default function AddShipment() {
           </select>
 
           {/* Expected Delivery */}
+          <label style={labelStyle}>Expected Delivery</label>
+
           <input
             type="date"
             required
@@ -127,6 +134,8 @@ export default function AddShipment() {
           />
 
           {/* Actual Delivery */}
+          <label style={labelStyle}>Actual Delivery</label>
+
           <input
             type="date"
             disabled={form.status !== "Delivered"}
@@ -199,7 +208,13 @@ const inputStyle = {
   fontSize: "14px",
   backdropFilter: "blur(10px)",
 };
-
+const labelStyle = {
+  display: "block",
+  marginBottom: "4px",
+  fontWeight: "bold",
+  fontSize: "14px",
+  color: "#60a5fa"
+};
 const submitBtn = {
   padding: "14px",
   borderRadius: "16px",

@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+const API = "http://localhost:5000/api";
 
 export default function AdminLogin({ setIsLoggedIn }) {
   const [email, setEmail] = useState("");
@@ -7,6 +8,7 @@ export default function AdminLogin({ setIsLoggedIn }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
 
   const login = async (e) => {
@@ -20,24 +22,29 @@ export default function AdminLogin({ setIsLoggedIn }) {
     setLoading(true);
 
     try {
-const res = await fetch("http://100.54.124.184:5000/api/admin/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
-      });
+     const res = await fetch(`${API}/admin/login`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    email,
+    password
+  })
+});
 
-      const data = await res.json();
-
-      if (!res.ok || !data.token) {
-        throw new Error(data.error || "Invalid credentials");
+const data = await res.json();
+      if (!data.token) {
+        throw new Error("Invalid credentials");
       }
 
       localStorage.setItem("adminToken", data.token);
       setIsLoggedIn(true);
+
       navigate("/", { replace: true });
 
     } catch (err) {
-      setError(err.message);
+      setError(err.response?.data?.error || err.message);
     } finally {
       setLoading(false);
     }
@@ -54,60 +61,47 @@ const res = await fetch("http://100.54.124.184:5000/api/admin/login", {
 
   return (
     <div style={pageStyle}>
-      {emojis.map((emoji, index) => (
-  <div
-    key={index}
-    style={{
-      position: "absolute",
-      top: emoji.top,
-      left: emoji.left,
-      fontSize: emoji.size,
-      opacity: emoji.opacity,
-      pointerEvents: "none",
-      userSelect: "none",
-      animation: "float 25s ease-in-out infinite alternate"
-    }}
-  >
-    💰
-  </div>
-))}
-      <style>
-        {`
-          @keyframes float {
-            from { transform: translateY(0px); }
-            to { transform: translateY(-60px); }
-          }
-        `}
-      </style>
 
-     <h1 style={brandWrapper}>
-  <span style={stoneIconLarge} />
-  <span style={brandText}>NoThink</span>
-  <span style={stoneIconLarge} />
-</h1>
+      {emojis.map((emoji, i) => (
+        <div
+          key={i}
+          style={{
+            position: "absolute",
+            top: emoji.top,
+            left: emoji.left,
+            fontSize: emoji.size,
+            opacity: emoji.opacity,
+            pointerEvents: "none"
+          }}
+        >
+          💰
+        </div>
+      ))}
 
-      <h2 style={subtitleStyle}> Supply Chain AI Dashboard</h2>
+      <h1 style={brandWrapper}>
+        <span style={stoneIconLarge} />
+        <span style={brandText}>NoThink</span>
+        <span style={stoneIconLarge} />
+      </h1>
+
+      <h2 style={subtitleStyle}>Supply Chain AI Dashboard</h2>
 
       <div style={cardStyle}>
         <div style={glowLayer} />
 
         <form onSubmit={login} style={{ position: "relative", zIndex: 1 }}>
 
-<h2 style={cardTitleWrapper}>
-  <span style={stoneIconSmall} />
-  <span>Admin Login</span>
-</h2>
+          <h2 style={cardTitleWrapper}>
+            <span style={stoneIconSmall} />
+            <span>Admin Login</span>
+          </h2>
 
-          {error && (
-            <div style={errorStyle}>
-              {error}
-            </div>
-          )}
+          {error && <div style={errorStyle}>{error}</div>}
 
           <input
             placeholder="Email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             style={inputStyle}
           />
 
@@ -116,13 +110,13 @@ const res = await fetch("http://100.54.124.184:5000/api/admin/login", {
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               style={inputStyle}
             />
 
             <span
               onClick={() => setShowPassword(!showPassword)}
-              style={passwordstyle}
+              style={passwordStyle}
             >
               {showPassword ? "Hide" : "Show"}
             </span>
@@ -138,12 +132,12 @@ const res = await fetch("http://100.54.124.184:5000/api/admin/login", {
           >
             {loading ? "Logging in..." : "Login"}
           </button>
+
         </form>
       </div>
     </div>
   );
 }
-
 /* --- Extra Styles --- */
 
 /* ================== STYLES ================== */
@@ -160,13 +154,7 @@ const pageStyle = {
   padding: "40px 20px"
 };
 
-const brandStyle = {
-  fontSize: "36px",
-  fontWeight: "900",
-  marginBottom: "10px",
-  color: "#fff",
-  textAlign: "center"
-};
+
 
 const subtitleStyle = {
   fontSize: "20px",
@@ -198,15 +186,7 @@ const glowLayer = {
   zIndex: 0
 };
 
-const cardTitle = {
-  fontSize: "26px",
-  fontWeight: "800",
-  marginBottom: "25px",
-  background: "linear-gradient(90deg, #60a5fa, #a78bfa)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  textAlign: "center"
-};
+
 
 const inputStyle = {
   width: "100%",
@@ -245,7 +225,7 @@ const errorStyle = {
   fontSize: "13px"
 };
 
-const passwordstyle = {
+const passwordStyle = {
 
   position: "absolute",
   right: "14px",

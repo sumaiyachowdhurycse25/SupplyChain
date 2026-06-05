@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+const API = "http://localhost:5000/api";
 
 const COLORS = {
   High: "#ef4444",
@@ -9,8 +10,15 @@ const COLORS = {
 // Helper function to include token
 const fetchWithToken = (url, options = {}) => {
   const token = localStorage.getItem("adminToken");
-  const headers = { ...options.headers, Authorization: `Bearer ${token}` };
-  return fetch(url, { ...options, headers });
+
+  return fetch(API + url, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 // Format date
@@ -27,7 +35,7 @@ export default function DelayPrediction() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetchWithToken("http://100.54.124.184:5000/api/delay-prediction")
+    fetchWithToken("/delay-prediction")
 
       .then(res => res.json())
       .then(json => setData(Array.isArray(json) ? json : []))

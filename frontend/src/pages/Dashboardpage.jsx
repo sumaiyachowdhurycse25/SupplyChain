@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PONotifications from "./PONotifications";
-
+const API = "http://localhost:5000/api";
 /* =======================
    Inject CSS Styles
 ======================= */
@@ -95,8 +95,15 @@ if (typeof document !== "undefined") {
 ======================= */
 const fetchWithToken = (url, options = {}) => {
   const token = localStorage.getItem("adminToken");
-  const headers = { ...options.headers, Authorization: `Bearer ${token}` };
-  return fetch(url, { ...options, headers });
+
+  return fetch(API + url, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 /* =======================
@@ -281,8 +288,8 @@ const Dashboardpage = () => {
   const [inventory, setInventory] = useState([]);
   const [lowStock, setLowStock] = useState([]);
   const [pendingShipments, setPendingShipments] = useState(0);
-  const [reorderCount, setReorderCount] = useState(0);
-  const [forecastResults, setForecastResults] = useState([]);
+  
+  
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -292,38 +299,34 @@ const Dashboardpage = () => {
           productsRes,
           inventoryRes,
           lowStockRes,
-          pendingShipmentsRes,
-          forecastRes
+          pendingShipmentsRes
         ] = await Promise.all([
-          fetchWithToken("http://100.54.124.184:5000/api/products"),
-          fetchWithToken("http://100.54.124.184:5000/api/inventory"),
-          fetchWithToken("http://100.54.124.184:5000/api/inventorydisplay/low-stock"),
-          fetchWithToken("http://100.54.124.184:5000/api/pending-shipments"),
-          fetchWithToken("http://100.54.124.184:5000/api/forecast-batch"),
+          fetchWithToken("/products"),
+          fetchWithToken("/inventory-display/inventory"),
+          fetchWithToken("/inventory-display/low-stock"),
+          fetchWithToken("/pending-shipments"),
+          
         ]);
 
         const [
           productsData,
           inventoryData,
           lowStockData,
-          pendingShipmentsData,
-          forecastData
+          pendingShipmentsData
         ] = await Promise.all([
           productsRes.json(),
           inventoryRes.json(),
           lowStockRes.json(),
-          pendingShipmentsRes.json(),
-          forecastRes.json(),
+          pendingShipmentsRes.json()
         ]);
 
         setProducts(Array.isArray(productsData) ? productsData : []);
         setInventory(Array.isArray(inventoryData) ? inventoryData : []);
         setLowStock(Array.isArray(lowStockData) ? lowStockData : []);
         setPendingShipments(pendingShipmentsData.count || 0);
-        setReorderCount(Array.isArray(forecastData) ? forecastData.length : 0);
+        
 
-        const storedForecasts = JSON.parse(localStorage.getItem("dashboardData") || "[]");
-        setForecastResults(storedForecasts);
+        
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
       } finally {
@@ -483,126 +486,11 @@ const Dashboardpage = () => {
       <PONotifications />
 </div>      
 
-
-
-
-     {/* Latest 3 Forecast Results */}
-{forecastResults.length > 0 && (
-  <div style={{ marginTop: "60px" }}>
-    <h2
-      style={{
-        fontSize: "28px",
-        fontWeight: "700",
-        marginBottom: "24px",
-        background: "linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6)",
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-        letterSpacing: "0.5px",
-      }}
-    >
-      🔮 Latest Forecast Results
-    </h2>
-
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-        gap: "24px",
-      }}
-    >
-      {forecastResults
-        .slice(-3)
-        .reverse()
-        .map((item, idx) => (
-          <div
-            key={idx}
-            style={{
-              position: "relative",
-              padding: "24px",
-              borderRadius: "20px",
-              color: "#fff",
-              cursor: "pointer",
-
-              // Glass Effect
-              background: "rgba(255,255,255,0.08)",
-              backdropFilter: "blur(18px)",
-              WebkitBackdropFilter: "blur(18px)",
-              border: "1px solid rgba(255,255,255,0.15)",
-
-              // Glow
-              boxShadow:
-                "0 8px 32px rgba(0,0,0,0.35), inset 0 0 40px rgba(255,255,255,0.04)",
-
-              transition: "all 0.3s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-6px)";
-              e.currentTarget.style.boxShadow =
-                "0 15px 45px rgba(0,0,0,0.55), inset 0 0 60px rgba(255,255,255,0.06)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow =
-                "0 8px 32px rgba(0,0,0,0.35), inset 0 0 40px rgba(255,255,255,0.04)";
-            }}
-          >
-            {/* Gradient shine layer */}
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                borderRadius: "20px",
-                background:
-                  "linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02))",
-                zIndex: 0,
-              }}
-            />
-
-            <div style={{ position: "relative", zIndex: 1 }}>
-              <h4
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "600",
-                  marginBottom: "12px",
-                  letterSpacing: "0.5px",
-                }}
-              >
-                {item.name}
-              </h4>
-
-              <div
-                style={{
-                  fontSize: "28px",
-                  fontWeight: "700",
-                  marginBottom: "8px",
-                  background:
-                    "linear-gradient(90deg, #60a5fa, #a78bfa)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                {item.predicted}
-              </div>
-
-              <div
-                style={{
-                  fontSize: "13px",
-                  opacity: 0.65,
-                  marginTop: "8px",
-                }}
-              >
-                {new Date(item.timestamp).toLocaleString()}
-              </div>
-            </div>
-          </div>
-        ))}
-    </div>
-  </div>
-)}
-
-    </div>
-  );
+</div>
+ );
 };
 
-export default Dashboardpage;
 
+  
+
+export default Dashboardpage;

@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 
-// Helper to include token in all requests
+const API = "http://localhost:5000/api";
+
+// Helper
 const fetchWithToken = (url, options = {}) => {
   const token = localStorage.getItem("adminToken");
-  const headers = { 
-    ...options.headers, 
-    Authorization: `Bearer ${token}` 
-  };
-  return fetch(url, { ...options, headers });
+
+  return fetch(API + url, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export default function Inventorydisplay() {
@@ -16,19 +22,21 @@ export default function Inventorydisplay() {
   const [editingId, setEditingId] = useState(null);
   const [editQuantity, setEditQuantity] = useState("");
 
+  // LOAD DATA
   const loadData = async () => {
     try {
-      const [inv, low] = await Promise.all([
-        fetchWithToken("http://100.54.124.184:5000/api/inventorydisplay/inventory").then(res => res.json()),
-        fetchWithToken("http://100.54.124.184:5000/api/inventorydisplay/low-stock").then(res => res.json())
+      const [invRes, lowRes] = await Promise.all([
+        fetchWithToken("/inventory-display/inventory"),
+        fetchWithToken("/inventory-display/low-stock"),
       ]);
+
+      const inv = await invRes.json();
+      const low = await lowRes.json();
 
       setInventory(Array.isArray(inv) ? inv : []);
       setLowStock(Array.isArray(low) ? low : []);
     } catch (err) {
       console.error(err);
-      setInventory([]);
-      setLowStock([]);
     }
   };
 
@@ -36,29 +44,30 @@ export default function Inventorydisplay() {
     loadData();
   }, []);
 
+  // SAVE EDIT
   const saveEdit = async (id) => {
-    await fetchWithToken(`http://100.54.124.184:5000/api/inventory/${id}`, {
-
+    await fetchWithToken(`/inventory/${id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ quantity: Number(editQuantity) })
+      body: JSON.stringify({ quantity: Number(editQuantity) }),
     });
 
     setEditingId(null);
     loadData();
   };
 
+  // DELETE
   const deleteRow = async (id) => {
     if (!window.confirm("Delete this inventory record?")) return;
 
-    await fetchWithToken(`http://100.54.124.184:5000/api/inventory/${id}`, { method: "DELETE" });
+    await fetchWithToken(`/inventory/${id}`, {
+      method: "DELETE",
+    });
 
     loadData();
   };
 
   return (
     <div style={pageStyle}>
-      {/* Title */}
       <h1 style={titleStyle}>📦 Inventory Management</h1>
 
       {/* KPI CARDS */}
@@ -74,7 +83,7 @@ export default function Inventorydisplay() {
         </div>
       </div>
 
-      {/* TABLE CARD */}
+      {/* TABLE */}
       <div style={cardStyle}>
         <table style={tableStyle}>
           <thead>
@@ -89,82 +98,90 @@ export default function Inventorydisplay() {
           </thead>
 
           <tbody>
-            {inventory.map(row => (
-              <tr
-                key={row.inventory_id}
-                style={{
-                  borderTop: "1px solid rgba(255,255,255,0.1)",
-                  background:
-                    row.quantity <= row.reorder_level
-                      ? "rgba(239,68,68,0.15)"
-                      : "transparent"
-                }}
-              >
-                <td style={tdStyle}>{row.product_name}</td>
-                <td style={tdStyle}>{row.sku}</td>
-                <td style={tdStyle}>{row.warehouse_name}</td>
+  {inventory.map(row => (
+    <tr
+      key={row.inventory_id}
+      style={{
+        borderTop: "1px solid rgba(255,255,255,0.1)",
+        background:
+          row.quantity <= (row.reorder_level || 0)
+            ? "rgba(239,68,68,0.15)"
+            : "transparent"
+      }}
+    >
+      <td style={tdStyle}>{row.product_name}</td>
+      <td style={tdStyle}>{row.sku}</td>
+      <td style={tdStyle}>{row.warehouse_name}</td>
 
-                <td style={tdStyle}>
-                  {editingId === row.inventory_id ? (
-                    <input
-                      type="number"
-                      value={editQuantity}
-                      onChange={(e) => setEditQuantity(e.target.value)}
-                      style={inputStyle}
-                    />
-                  ) : (
-                    row.quantity
-                  )}
-                </td>
+      <td style={tdStyle}>
+        {editingId === row.inventory_id ? (
+          <input
+            type="number"
+            value={editQuantity}
+            onChange={(e) =>
+              setEditQuantity(e.target.value)
+            }
+            style={inputStyle}
+          />
+        ) : (
+          row.quantity
+        )}
+      </td>
 
-                <td style={tdStyle}>{row.reorder_level}</td>
+      <td style={tdStyle}>{row.reorder_level}</td>
 
-                <td style={tdStyle}>
-                  {editingId === row.inventory_id ? (
-                    <>
-                      <button
-                        onClick={() => saveEdit(row.inventory_id)}
-                        style={saveBtn}
-                      >
-                        Save
-                      </button>
-                      <button
-                        onClick={() => setEditingId(null)}
-                        style={cancelBtn}
-                      >
-                        Cancel
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        onClick={() => {
-                          setEditingId(row.inventory_id);
-                          setEditQuantity(row.quantity);
-                        }}
-                        style={editBtn}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => deleteRow(row.inventory_id)}
-                        style={deleteBtn}
-                      >
-                        Delete
-                      </button>
-                    </>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
+      <td style={tdStyle}>
+        {editingId === row.inventory_id ? (
+          <>
+            <button
+              onClick={() =>
+                saveEdit(row.inventory_id)
+              }
+              style={saveBtn}
+            >
+              Save
+            </button>
+
+            <button
+              onClick={() => setEditingId(null)}
+              style={cancelBtn}
+            >
+              Cancel
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={() => {
+                setEditingId(row.inventory_id);
+                setEditQuantity(row.quantity);
+              }}
+              style={editBtn}
+            >
+              Edit
+            </button>
+
+            <button
+              onClick={() =>
+                deleteRow(row.inventory_id)
+              }
+              style={deleteBtn}
+            >
+              Delete
+            </button>
+          </>
+        )}
+      </td>
+    </tr>
+  ))}
+</tbody>
         </table>
       </div>
     </div>
   );
 }
 
-/* -------------------- STYLES -------------------- */
+/* ================= YOUR ORIGINAL STYLES (UNCHANGED) ================= */
 
 const pageStyle = {
   minHeight: "100vh",
@@ -287,4 +304,3 @@ const cancelBtn = {
   background: "linear-gradient(90deg, #9ca3af, #6b7280)",
   color: "#fff",
 };
-

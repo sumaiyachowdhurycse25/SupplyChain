@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
-
+const API = "http://localhost:5000/api";
 // Helper to include token in all requests
 const fetchWithToken = (url, options = {}) => {
   const token = localStorage.getItem("adminToken");
-  const headers = { ...options.headers, Authorization: `Bearer ${token}` };
-  return fetch(url, { ...options, headers });
+
+  return fetch(API + url, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 const PONotifications = () => {
@@ -13,7 +20,7 @@ const PONotifications = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const res = await fetchWithToken("http://100.54.124.184:5000/api/purchase-orders/notifications");
+        const res = await fetchWithToken("/purchase-orders/notifications");
         const data = await res.json();
         setNotifications(Array.isArray(data) ? data : []);
       } catch (err) {

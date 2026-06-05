@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-
+const API = "http://localhost:5000/api";
 // Helper to include token
 const fetchWithToken = (url, options = {}) => {
   const token = localStorage.getItem("adminToken");
-  const headers = { ...options.headers, Authorization: `Bearer ${token}` };
-  return fetch(url, { ...options, headers });
+
+  return fetch(API + url, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export default function RouteOptimization() {
@@ -24,7 +31,7 @@ export default function RouteOptimization() {
     setLoading(true);
 
     try {
-     const res = await fetchWithToken("http://100.54.124.184:5000/api/routes/optimize", {
+     const res = await fetchWithToken("/routes/optimize", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

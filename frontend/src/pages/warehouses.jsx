@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-
+const API = "https://supplychain-khaki.vercel.app/api";
 // Helper to include token
 const fetchWithToken = (url, options = {}) => {
   const token = localStorage.getItem("adminToken");
-  const headers = {
-    ...options.headers,
-    Authorization: `Bearer ${token}`,
-  };
-  return fetch(url, { ...options, headers });
+
+  return fetch(API + url, {
+    ...options,
+    headers: {
+      ...options.headers,
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export default function Warehouses() {
@@ -17,7 +20,7 @@ export default function Warehouses() {
 
   const loadWarehouses = async () => {
     try {
-      const res = await fetchWithToken("http://100.54.124.184:5000/api/warehouses");
+      const res = await fetchWithToken("/warehouses");
 
       const data = await res.json();
       setWarehouses(Array.isArray(data) ? data : []);
@@ -36,8 +39,8 @@ export default function Warehouses() {
 
     const method = editId ? "PUT" : "POST";
     const url = editId
-      ? `http://100.54.124.184:5000/api/warehouses/${editId}`
-      : "http://100.54.124.184:5000/api/warehouses";
+      ? `/warehouses/${editId}`
+      : `/warehouses`;
 
     await fetchWithToken(url, {
       method,
@@ -53,7 +56,7 @@ export default function Warehouses() {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete Warehouse?")) return;
 
-    await fetchWithToken(`http://100.54.124.184:5000/api/warehouses/${id}`, {
+    await fetchWithToken(`/warehouses/${id}`, {
       method: "DELETE"
     });
 

@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const API = "http://localhost:5000/api";
+
 // Helper
 const fetchWithToken = (url, options = {}) => {
   const token = localStorage.getItem("adminToken");
-  const headers = { ...options.headers, Authorization: `Bearer ${token}` };
-  return fetch(url, { ...options, headers });
+
+  return fetch(API + url, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export default function PurchaseOrders() {
@@ -28,8 +37,8 @@ export default function PurchaseOrders() {
   const loadData = async () => {
     try {
       const [s, o] = await Promise.all([
-        fetchWithToken("http://100.54.124.184:5000/api/suppliers").then(r => r.json()),
-        fetchWithToken("http://100.54.124.184:5000/api/purchase-orders").then(r => r.json())
+        fetchWithToken("/suppliers").then(r => r.json()),
+        fetchWithToken("/purchase-orders").then(r => r.json())
       ]);
 
       setSuppliers(Array.isArray(s) ? s : []);
@@ -51,7 +60,7 @@ export default function PurchaseOrders() {
     try {
       if (editingId) {
         await fetchWithToken(
-          `http://100.54.124.184:5000/api/purchase-orders/${editingId}`,
+          `/purchase-orders/${editingId}`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -59,7 +68,7 @@ export default function PurchaseOrders() {
           }
         );
       } else {
-        await fetchWithToken("http://100.54.124.184:5000/api/purchase-orders", {
+        await fetchWithToken("/purchase-orders", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
@@ -94,7 +103,7 @@ export default function PurchaseOrders() {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this purchase order?")) return;
 
-    await fetchWithToken(`http://100.54.124.184:5000/api/purchase-orders/${id}`, {
+    await fetchWithToken(`/purchase-orders/${id}`, {
         method: "DELETE"
       });
 
